@@ -1,4 +1,5 @@
 
+
 public class Limit {
 	
 	public static int limitLong(int reference){

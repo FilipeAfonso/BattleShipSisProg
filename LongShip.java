@@ -1,16 +1,28 @@
+
 import java.util.Random;
 
 public class LongShip {
 	
-	public static int firstLongShip(){
+	private int reference;
+	private int health = 3;
+	
+	public void create(){
+				
+		Random rand = new Random();
 		
-		int position;
-		
-		Random longShip = new Random();
-		
-		position = longShip.nextInt(20);
-		
-		return position;
-	}
+		reference = rand.nextInt(20);
 
+	}
+	
+	public int getRef() {
+		return reference;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public void beAttacked() {
+		health--;
+	}
 }
