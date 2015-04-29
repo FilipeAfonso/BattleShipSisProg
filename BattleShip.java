@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class BattleShip {
@@ -5,37 +6,35 @@ public class BattleShip {
 	public static void main (String[] args){
 		
 		Scanner in = new Scanner(System.in);
+		LongShip lShip = new LongShip();
+		SmallShip sShip = new SmallShip();		
 		
-		int secondReference;
-		int reference;
 		int palpite = -1;
-		int smallHealth = 2;
-		int longHealth = 3;
 		int tries = 0;
 		int[] verificadorAcerto = {0, 0, 0, 0, 0};
 		int[] verificador = {0, 0, 0};
 		int[] grid = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		int[] verificadorAgua = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		
-		reference = LongShip.firstLongShip();
-		secondReference = SmallShip.firstSmallShip(reference);
+		lShip.create();
+		sShip.create(lShip.getRef());
 		
-		grid[reference] = 1;
+		grid[lShip.getRef()] = 1;
 		
-		if(Limit.limitLong(reference) == 0){
-			grid[reference + 1] = 2;
-			grid[reference + 2] = 3;
+		if(Limit.limitLong(lShip.getRef()) == 0){
+			grid[lShip.getRef() + 1] = 2;
+			grid[lShip.getRef() + 2] = 3;
 		}else{
-			grid[reference - 1] = 2;
-			grid[reference - 2] = 3;
+			grid[lShip.getRef() - 1] = 2;
+			grid[lShip.getRef() - 2] = 3;
 		}
 		
-		grid[secondReference] = 4;
+		grid[sShip.getRef()] = 4;
 		
-		if(Limit.limitSmall(secondReference) == 0){
-			grid[secondReference + 1] = 5;
+		if(Limit.limitSmall(sShip.getRef()) == 0){
+			grid[sShip.getRef() + 1] = 5;
 		}else{
-			grid[secondReference - 1] = 5;
+			grid[sShip.getRef() - 1] = 5;
 		}
 		
 		do{
@@ -49,42 +48,42 @@ public class BattleShip {
 				if(grid[palpite] == 4){
 					if(verificadorAcerto[0] == 0){
 						verificadorAcerto[0] = 1;
-						smallHealth --;
-						System.out.println("Você acertou uma embarcacao!");
+						sShip.beAttacked();
+						System.out.println("Vocï¿½ acertou uma embarcacao!");
 					}else{
-						System.out.println("Você já disse esse número. Insira um diferente e válido desta vez");
+						System.out.println("Vocï¿½ jï¿½ disse esse nï¿½mero. Insira um diferente e vï¿½lido desta vez");
 					}
 				}else if(grid[palpite] == 5){
 					if(verificadorAcerto[1] == 0){
 						verificadorAcerto[1] = 1;
-						smallHealth --;
-						System.out.println("Você acertou uma embarcacao!");
+						sShip.beAttacked();
+						System.out.println("Vocï¿½ acertou uma embarcacao!");
 					}else{
-						System.out.println("Você já disse esse número. Insira um diferente e válido desta vez");
+						System.out.println("Vocï¿½ jï¿½ disse esse nï¿½mero. Insira um diferente e vï¿½lido desta vez");
 					}
 				}else if(grid[palpite] == 1){
 					if(verificadorAcerto[2] == 0){
 						verificadorAcerto[2] = 1;
-						longHealth --;
-						System.out.println("Você acertou uma embarcacao!");
+						lShip.beAttacked();
+						System.out.println("Vocï¿½ acertou uma embarcacao!");
 					}else{
-						System.out.println("Você já disse esse número. Insira um diferente e válido desta vez");
+						System.out.println("Vocï¿½ jï¿½ disse esse nï¿½mero. Insira um diferente e vï¿½lido desta vez");
 					}
 				}else if(grid[palpite] == 2){
 					if(verificadorAcerto[3] == 0){
 						verificadorAcerto[3] = 1;
-						longHealth --;
-						System.out.println("Você acertou uma embarcacao!");
+						lShip.beAttacked();
+						System.out.println("Vocï¿½ acertou uma embarcacao!");
 					}else{
-						System.out.println("Você já disse esse número. Insira um diferente e válido desta vez");
+						System.out.println("Vocï¿½ jï¿½ disse esse nï¿½mero. Insira um diferente e vï¿½lido desta vez");
 					}
 				}else if(grid[palpite] == 3){
 					if(verificadorAcerto[4] == 0){
 						verificadorAcerto[4] = 1;
-						longHealth --;
-						System.out.println("Você acertou uma embarcacao!");
+						lShip.beAttacked();
+						System.out.println("Vocï¿½ acertou uma embarcacao!");
 					}else{
-						System.out.println("Você já disse esse número. Insira um diferente e válido desta vez");
+						System.out.println("Vocï¿½ jï¿½ disse esse nï¿½mero. Insira um diferente e vï¿½lido desta vez");
 					}
 				}
 			}else{
@@ -92,17 +91,17 @@ public class BattleShip {
 					verificadorAgua[palpite] = 1;
 					System.out.println("Agua!");
 				}else{
-					System.out.println("Você já disse esse número. Insira um diferente e válido desta vez");
+					System.out.println("Vocï¿½ jï¿½ disse esse nï¿½mero. Insira um diferente e vï¿½lido desta vez");
 				}
 			}
 		
 			tries ++;
 		
-			if((smallHealth == 0)&&(verificador[0] == 0)){
+			if((sShip.getHealth() == 0)&&(verificador[0] == 0)){
 				verificador[0] = 1;
 				System.out.println("Parabens! Voce destruiu um Destroyer (navio que ocupa dois espacos)");
 			}
-			if((longHealth == 0)&&(verificador[1] == 0)){
+			if((lShip.getHealth() == 0)&&(verificador[1] == 0)){
 				verificador[1] = 1;
 				System.out.println("Parabens! Voce destruiu um Cruzador (navio que ocupa tres espacos)");
 			}

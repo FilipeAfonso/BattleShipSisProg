@@ -1,28 +1,42 @@
+
 import java.util.Random;
 
 public class SmallShip {
 	
-	public static int firstSmallShip(int reference){
+	private int reference;
+	private int health = 2;
+	
+	public void create(int ref){
 		
-		Random smallShip = new Random();
+		Random rand = new Random();		
 		
-		int position;
-		
-		
-		if(reference != 18){
+		if(ref != 18){
 			do{
 				
-				position = smallShip.nextInt(20);
+				reference = rand.nextInt(20);
 				
-			}while((position == reference)||(position == reference + 1)||(position == reference + 2)||(position+1 == reference)||(position+2 == reference + 1)||(position+3 == reference + 2));
+			}while((reference == ref)||(reference == ref + 1)||(reference == ref + 2)||
+					(reference+1 == ref)||(reference+2 == ref + 1)||(reference+3 == ref + 2));
 		}else{
 			do{
 				
-				position = smallShip.nextInt(20);
+				reference = rand.nextInt(20);
 				
-			}while((position == reference)||(position == reference + 1)||(position == reference + 2)||(position+1 == reference)||(position+2 == reference + 1)||(position+3 == reference + 2)||(position == 19));
+			}while((reference == ref)||(reference == ref + 1)||(reference == ref + 2)||
+					(reference+1 == ref)||(reference+2 == ref + 1)||(reference+3 == ref + 2)||(reference == 19));
 			
 		}
-		return position;
+	}
+	
+	public int getRef() {
+		return reference;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public void beAttacked() {
+		health--;
 	}
 }
